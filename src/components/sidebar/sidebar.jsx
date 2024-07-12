@@ -42,7 +42,7 @@ function Sidebar() {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "space-between",
-                            marginTop: "30px",
+                            marginTop: "24px",
                             padding: "0 12px",
                         }}
                     >

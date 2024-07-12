@@ -91,12 +91,13 @@ export const Table = styled.table`
 `;
 
 export const Thead = styled.thead`
+    box-shadow: 0px -1px 0px 0px #EDF2F7 inset;
     font-weight: bold;
     height: 52px;
     display: flex;
     align-items: center;
-    background: #EDF2F7;
-    /* justify-content: space-around; */
+    background: #FAFAFB;
+    user-select: none;
 `;
 
 export const Tr = styled.tr`
