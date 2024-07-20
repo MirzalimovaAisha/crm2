@@ -51,7 +51,7 @@ export function AddNewStudentModal({ open, setOpen }) {
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >
         <ModalScroll>
-          <AddTeacherModalStyle>
+          <AddTeacherModalStyle> 
             <AddTeacherModalTop>
               <ModalClose sx={{ position: "absolute", mt: "-5px" }} />
             </AddTeacherModalTop>
