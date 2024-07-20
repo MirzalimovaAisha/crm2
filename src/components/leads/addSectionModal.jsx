@@ -3,7 +3,6 @@ import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
 import {
     AddNewTeacher,
-    AddTeacherBtn,
     AddTeacherModalBottom,
     AddTeacherModalStyle,
     AddTeacherModalTop,
@@ -11,6 +10,7 @@ import {
     ModalInputContainer,
     ModalLabel,
 } from "../teachers/style";
+import { SendButton } from "../home/style";
 
 function AddSectionModal({ open, setOpen }) {
     return (
@@ -18,6 +18,7 @@ function AddSectionModal({ open, setOpen }) {
             <Modal
                 aria-labelledby="modal-title"
                 aria-describedby="modal-desc"
+                disableAutoFocus
                 open={open}
                 onClose={() => setOpen(false)}
                 sx={{
@@ -30,7 +31,7 @@ function AddSectionModal({ open, setOpen }) {
                     <AddTeacherModalTop>
                         <ModalClose sx={{ position: "absolute", mt: "-5px" }} />
                     </AddTeacherModalTop>
-                    <AddTeacherModalBottom style={{ height: "362px" }}>
+                    <AddTeacherModalBottom>
                         <AddNewTeacher>Add section</AddNewTeacher>
                         <ModalInputContainer>
                             <ModalLabel htmlFor="name">Section name</ModalLabel>
@@ -41,7 +42,7 @@ function AddSectionModal({ open, setOpen }) {
                             />
                         </ModalInputContainer>
 
-                        <AddTeacherBtn>Create section</AddTeacherBtn>
+                        <SendButton>Create section</SendButton>
                     </AddTeacherModalBottom>
                 </AddTeacherModalStyle>
             </Modal>

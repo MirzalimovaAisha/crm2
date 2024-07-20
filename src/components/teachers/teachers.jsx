@@ -7,7 +7,6 @@ import {
     SearchIcon,
     SearchTeachers,
     Table,
-    Td,
     TeacherPhoto,
     TeachersPageContainer,
     TeachersPageContainerTop,

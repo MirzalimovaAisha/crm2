@@ -9,7 +9,6 @@ export const TeachersPageContainer = styled.div`
     /* align-items: center; */
     /* justify-content: center; */
     margin-left: 256px;
-    margin-bottom: 274px;
     gap: 50px;
 `;
 
@@ -92,7 +91,6 @@ export const TeacherPhoto = styled.div`
 `;
 
 export const Table = styled.table`
-    width: 900px;
     background: #fff;
     /* border-top-right-radius: 20px;
     border-top-left-radius: 20px; */
@@ -100,14 +98,19 @@ export const Table = styled.table`
     user-select: none;
     border-collapse: collapse;
     border-radius: 16px 16px 0px 0px;
-    box-shadow: 0px 0px 1px 0px rgba(12, 26, 75, 0.24), 0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+    box-shadow: 0px 0px 1px 0px rgba(12, 26, 75, 0.24),
+        0px 3px 8px -1px rgba(50, 50, 71, 0.05);
 `;
 
 export const THead = styled.thead`
     display: flex;
-    background: #FAFAFB;
+    background: #fafafb;
     justify-content: space-around;
-    box-shadow: 0px -1px 0px 0px #EDF2F7 inset;
+    box-shadow: 0px -1px 0px 0px #edf2f7 inset;
+
+    color: #A098D5;
+    font-size: 12px;
+    font-weight: 600;
 `;
 
 export const Tr = styled.tr`
@@ -117,6 +120,8 @@ export const Tr = styled.tr`
     align-items: center;
     padding: 0 40px;
     border-top: 0.1px solid #edecf3;
+
+    
 
     &:hover {
         background: #938b8b14;
@@ -145,8 +150,8 @@ export const TeacherTd = styled.td`
     justify-content: center;
     align-items: center;
 
-    color: ${(props)=> props.$number ? "#6053B9" : "#A098D5"};
-    font-size: ${(props)=> props.$number ? "14px" : "12px"};
+    color: ${(props) => (props.$number ? "#6053B9" : "#A098D5")};
+    font-size: ${(props) => (props.$number ? "14px" : "12px")};
 
     font-family: "Public Sans";
     font-weight: 600;
@@ -159,9 +164,9 @@ export const FullNameTd = styled.td`
     align-items: center;
     width: 420px;
 
-    color: #2c2669;
+    color: #A098D5;
     font-family: "Public Sans";
-    font-size: 14px;
+    font-size: 12px;
     font-style: normal;
     font-weight: 700;
     line-height: 16px;
@@ -169,16 +174,16 @@ export const FullNameTd = styled.td`
 
 // Teacher Profile Page
 export const TeacherProfileTabList = styled.div`
-    width: 100%;
-    height: 50px;
+    /* width: 100%; */
     display: flex;
-    /* background: red; */
+    justify-content: space-between;
 `;
 
 export const TeacherProfileTabListBtn = styled.div`
-    display: flex;
     width: 187px;
-    padding: 14px 67px 14px 72px;
+    height: 44px;
+    display: flex;
+    /* padding: 14px 67px 14px 72px; */
     justify-content: center;
     align-items: center;
     border-top: 2px solid #2c2669;
@@ -193,24 +198,22 @@ export const TeacherProfileTabListBtn = styled.div`
     border-right: ${(props) => (props.$last ? "2px solid #2C2669" : "none")};
     cursor: pointer;
     background-color: ${(props) =>
-        props.selected ? "#2C2669" : "transparent"};
+        props.selected ? "#2C2669" : "transparent"}; 
 
     color: ${(props) => (props.selected ? "#fff" : "#2C2669")};
-    font-family: "Public Sans";
     font-size: 14px;
-    font-style: normal;
     font-weight: 500;
-    line-height: 16px;
 `;
 
 export const TeacherProfilePageContainer = styled.div`
-    width: 100%;
-    min-height: 100vh;
+    /* width: 1140px; */
     display: flex;
     flex-direction: column;
-    padding: 130px 50px 20px 300px;
+    /* padding: 130px 50px 20px 300px; */
+    margin-top: 40px;
     background: #efeef8;
-    gap: 50px;
+    margin-left: 256px;
+    gap: 40px;
 `;
 
 export const TeacherProfileCard = styled.div`
@@ -236,14 +239,11 @@ export const TeacherProfileCardTop = styled.div`
 `;
 
 export const TeacherProfileCardTopIcon = styled.div`
-    margin-left: 15px;
 
     color: #6053b9;
     font-family: "Public Sans";
-    font-size: 17px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 16px;
+    font-size: 14px;
+    font-weight: 700;
 `;
 
 export const TeacherProfileCardImg = styled.img`
@@ -337,18 +337,16 @@ export const TeacherProfileCardBottomText = styled.div`
 
 // Groups
 export const GroupsContainer = styled.div`
-    width: 50%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 50px;
+    gap: 40px;
 `;
 
 export const GroupsCard = styled.div`
     width: 522px;
-    height: 394px;
     border-radius: 20px;
     background: #fff;
-    padding: 30px;
+    padding:26px;
 `;
 
 export const GroupProfile = styled.div`
@@ -376,7 +374,6 @@ export const GroupCardCenter = styled.div`
     margin: 10px 0;
 
     color: #a098d5;
-    font-family: "Public Sans";
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -386,16 +383,13 @@ export const GroupCardCenter = styled.div`
 export const GroupName = styled.div`
     margin-top: 10px;
     color: #2c2669;
-    font-family: "Public Sans";
-    font-size: 18px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 700;
-    line-height: 24px;
 `;
 
 export const Course = styled.div`
     color: #6053b9;
-    font-family: "Public Sans";
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
@@ -404,7 +398,6 @@ export const Course = styled.div`
 
 export const StartDate = styled.div`
     color: #6053b9;
-    font-family: "Public Sans";
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
@@ -431,7 +424,7 @@ export const StudentsBox = styled.div`
 export const Line = styled.div`
     width: 100%;
     height: 1px;
-    margin: 50px 0 20px 0;
+    margin: 44px 0 20px 0;
     background: linear-gradient(
             0deg,
             rgba(0, 0, 0, 0.2) 0%,
@@ -473,12 +466,12 @@ export const SeeGroupBtn = styled.div`
 `;
 
 export const SalaryTr = styled.tr`
+    /* color: #6053B9; */
     height: 70px;
     background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 20px;
     border-top: 0.1px solid #edecf3;
 
     &:hover {
@@ -488,21 +481,65 @@ export const SalaryTr = styled.tr`
 `;
 
 export const SalaryTd = styled.td`
-    color: #6053b9;
     width: 270px;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: ${(props)=> (props.$bold) ? "#2C2669" : "#6053B9"};
+    font-weight: ${(props)=> (props.$bold) ? "700" : "600"};
+    font-size: 14px;
+
+    &.td{
+        color: #A098D5;
+        font-size: 12px;
+        font-weight: 600;
+    }
 `;
 
 export const AddTeacherModalStyle = styled.div`
+    margin-top: 50px;
+    margin-bottom: 50px;
     width: 650px;
-    /* height: 983px; */
+    background: #ffffff70;
+    /* box-shadow: 0px 3px 5px 0px #231e54; */
+    /* overflow: hidden; */
+    animation: rotateShadow 4s infinite linear;
+
+    @keyframes rotateShadow {
+        0% {
+            box-shadow: 0px 5px 5px 0px #231e544a;
+        }
+        25% {
+            box-shadow: -5px 5px 5px 0px #231e544a;
+        }
+        50% {
+            box-shadow: -5px -5px 5px 0px #231e544a;
+        }
+        75% {
+            box-shadow: 5px -5px 5px 0px #231e544a;
+        }
+        100% {
+            box-shadow: 0px 5px 5px 0px #231e544a;
+        }
+    }
 `;
+
+export const ModalScroll = styled.div`
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    overflow: scroll;
+    height: 100vh;
+
+    ::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, and Opera */
+    }
+    -ms-overflow-style: none;  /* Internet Explorer and Edge */
+    scrollbar-width: none;  /* Firefox */
+`
 
 export const AddTeacherModalTop = styled.div`
     position: relative;
-    width: 650px;
     height: 40px;
     background: #efeef8;
     display: flex;
@@ -511,9 +548,10 @@ export const AddTeacherModalTop = styled.div`
 
 export const AddTeacherModalBottom = styled.div`
     width: 100%;
-    height: 943px;
-    background: #fff;
-    padding: 50px;
+    padding: 40px 60px 50px;
+    gap: 30px ;
+    display: flex;
+    flex-direction: column;
 `;
 
 export const AddNewTeacher = styled.div`
@@ -530,16 +568,9 @@ export const ModalInputContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 6px;
-    margin: 30px 0;
 
-    input {
-        position: absolute;
-        background: red;
-        top: 30px;
-        height: 60px;
-        width: 100%;
-        cursor: pointer;
-        opacity: 0;
+    &.phone:hover{
+        background: none;
     }
 `;
 
@@ -552,52 +583,75 @@ export const ModalLabel = styled.label`
     line-height: 16px;
 `;
 
+export const UploadPhoto = styled.input`
+    position: absolute;
+    bottom: 0;
+    height: 58px;
+    width: 100%;
+    cursor: pointer;
+    opacity: 0;
+`;
+
 export const ModalInput = styled.input`
     display: flex;
     height: 58px;
-    padding: 8px 149px 8px 16px;
+    padding: 8px 16px;
     align-items: center;
     align-self: stretch;
     border-radius: 8px;
     border: 1px solid #cfcbea;
     background: #efeef8;
+    width: 100%;
+    font-size: 18px;
 
-    color: #000;
-    font-family: "Public Sans";
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
+    &.input-with-icon {
+        background-image: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%3E%3Cpath%20d=%22M2.9918%2021C2.44405%2021%202%2020.5551%202%2020.0066V3.9934C2%203.44476%202.45531%203%202.9918%203H21.0082C21.556%203%2022%203.44495%2022%203.9934V20.0066C22%2020.5552%2021.5447%2021%2021.0082%2021H2.9918ZM20%2015V5H4V19L14%209L20%2015ZM20%2017.8284L14%2011.8284L6.82843%2019H20V17.8284ZM8%2011C6.89543%2011%206%2010.1046%206%209C6%207.89543%206.89543%207%208%207C9.10457%207%2010%207.89543%2010%209C10%2010.1046%209.10457%2011%208%2011Z%22%20fill=%22%23BFBAE3%22/%3E%3C/svg%3E");
+        background-repeat: no-repeat; /* 이미지 반복 안 함 */
+        background-position: 16px center; /* 이미지를 왼쪽에서 10px 떨어진 위치에 가운데 정렬 */
+        padding-left: 50px;
+    }
+    
+    &.date-icon{
+        background-image: url('data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%3E%3Cpath%20d=%22M9%201V3H15V1H17V3H21C21.5523%203%2022%203.44772%2022%204V20C22%2020.5523%2021.5523%2021%2021%2021H3C2.44772%2021%202%2020.5523%202%2020V4C2%203.44772%202.44772%203%203%203H7V1H9ZM20%2011H4V19H20V11ZM7%205H4V9H20V5H17V7H15V5H9V7H7V5Z%22%20fill=%22%232C2669%22/%3E%3Cpath%20d=%22M9%201V3H15V1H17V3H21C21.5523%203%2022%203.44772%2022%204V20C22%2020.5523%2021.5523%2021%2021%2021H3C2.44772%2021%202%2020.5523%202%2020V4C2%203.44772%202.44772%203%203%203H7V1H9ZM20%2011H4V19H20V11ZM7%205H4V9H20V5H17V7H15V5H9V7H7V5Z%22%20fill=%22black%22%20fill-opacity=%220.2%22/%3E%3C/svg%3E');
+        padding-left: 50px;
+        background-repeat: no-repeat; 
+        background-position: 16px center; 
+        font-size: 18px;
+    }
+
+    &::placeholder {
+        font-family: "Public Sans";
+        font-size: 18px;
+        color: var(--200, #cfcbea);
+    }
 
     &:focus {
-        outline-style: groove;
+        outline: none;
     }
 `;
 
-export const AddTeacherBtn = styled.div`
+export const CustomDateButton = styled.button`
+    height: 58px;
+    padding: 8px 16px;
+    width: ${(props)=> props.$group ? "250px" : "100%" };
     display: flex;
-    width: 100%;
-    height: 44px;
-    padding: 10px 40px;
-    flex-direction: column;
-    justify-content: center;
+    gap: 8px;
     align-items: center;
-    gap: 10px;
-    border-radius: 6px;
-    background: linear-gradient(
-            0deg,
-            rgba(0, 0, 0, 0.2) 0%,
-            rgba(0, 0, 0, 0.2) 100%
-        ),
-        #2c2669;
     cursor: pointer;
-
-    color: #fff;
+    background: #EFEEF8;
     font-family: "Public Sans";
     font-size: 18px;
-    font-style: normal;
     font-weight: 400;
-    line-height: 24px;
+    color: #2C2669;
+    border-radius: 8px;
+    border: 1px solid var(--200, #CFCBEA);
+`
+
+export const AddModalInput = styled.input`
+    background: #efeef8;
+    width: 100%;
+    height: 58px;
+    padding: 0px 16px;
 `;
 
 export const SelectInput = styled.select`
@@ -617,6 +671,7 @@ export const SelectInput = styled.select`
 
     &:focus {
         outline-style: groove;
+        outline: none;
     }
 `;
 
