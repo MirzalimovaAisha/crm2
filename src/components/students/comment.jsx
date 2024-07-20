@@ -26,7 +26,7 @@ function Comment() {
   };
 
   return (
-    <Table>
+    <Table style={{marginBottom:"100px"}}>
       <Thead>
         <Tr $hoverNone>
             <Th></Th>
@@ -40,7 +40,7 @@ function Comment() {
           return (
             <Tr key={index}>
               <NumberTd>{index + 1}</NumberTd>
-              <Td style={{ width: "579px", marginLeft: "20px" }}>
+              <Td style={{ width: "579px"}}>
                 <CommentContent style={{ color: "#2C2669" }}>
                   {value.comment.comment}
                 </CommentContent>

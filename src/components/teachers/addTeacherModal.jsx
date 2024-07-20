@@ -92,7 +92,7 @@ export function AddTeacherModal({ open, setOpen }) {
                                         value={fileName}
                                         placeholder="Upload photo"
                                         style={{
-                                            width: "250px",
+                                            width: "100%",
                                         }}
                                     />
                                 </ModalInputContainer>
