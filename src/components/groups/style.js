@@ -139,7 +139,7 @@ export const Tbody = styled.tbody`
 `
 
 export const Tr = styled.tr`
-    height: ${(props)=> props.$header ? "56px" : "65px"};
+    height: ${(props)=> props.$header ? "54px" : "65px"};
     display: flex;
     /* border-bottom: ; */
     box-shadow: 0px -1px 0px 0px #EDF2F7 inset;
@@ -172,7 +172,7 @@ export const Td = styled.td`
     gap: 12px;
     font-size: 14px;
 
-    color: ${(props)=> props.$purple ? "#6053B9" : "#2C2669"};
+    color: ${(props)=> props.$purple ? "#2C2669 " : "#6053B9"};
     font-weight: ${(props)=> props.$bold ? "700" : "500"};
 `;
 

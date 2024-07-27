@@ -70,13 +70,12 @@ export const NavbarContainer = styled.div`
     width: 100%;
     height: 70px;
     background: white;
-    /* position: fixed; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 45px;
-    top: 0;
     z-index: 100;
+    position: relative;
 `;
 
 export const NavbarLeft = styled.p`
