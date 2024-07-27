@@ -67,10 +67,10 @@ export const HomeLine = styled.div`
 
 // Navbar
 export const NavbarContainer = styled.div`
-    width: 100vw;
+    width: 100%;
     height: 70px;
     background: white;
-    position: fixed;
+    /* position: fixed; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -221,10 +221,7 @@ export const LoginButton = styled.button`
     height: 44px;
     border-radius: 6px;
     background: none;
-    border-bottom: 1px solid #2c2669;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    border: 1px solid #2c2669;
     font-size: 18px;
     cursor: pointer;
     transition: all 0.1s;
@@ -260,11 +257,8 @@ export const LoginButton = styled.button`
 `;
 
 export const DemoRightContainer = styled.div`
-    display: flex;
-    flex-direction: column;
     h1 {
         color: var(--600, #2c2669);
-        font-family: "Public Sans";
         font-size: 28px;
         font-style: normal;
         font-weight: 700;
@@ -272,12 +266,10 @@ export const DemoRightContainer = styled.div`
     }
     p {
         color: var(--500, #6053b9);
-        font-family: "Public Sans";
         font-size: 18px;
         font-style: normal;
         font-weight: 400;
         line-height: 24px;
-        width: 532px;
         margin-top: 30px;
     }
 `;
@@ -337,7 +329,7 @@ export const LoginContainer = styled.div`
     justify-content: center;
     align-items: center;
     gap: 30px;
-    height: 100vh;
+    padding: 30px 0px;
     background: #efeef8;
 `;
 
