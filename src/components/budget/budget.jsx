@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // ======== style ====
 import { GroupsContainer } from "../groups/style";
@@ -7,16 +7,17 @@ import { GroupsContainer } from "../groups/style";
 import data from "../../assets/calendar.svg";
 import downIcon from "../../assets/add-icon2.svg";
 
-// ======= mui ==========
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
-import { BudgetData, BudgetTopText, BudgetTopTextContainer } from "./style";
+import { BudgetData } from "./style";
 import BudgetIncome from "./budget-Income";
 import BudgetCategory from "./budget-Category";
 import BedgetExpense from "./budget-Expense";
+import {
+  TeacherProfileTabList,
+  TeacherProfileTabListBtn,
+} from "../teachers/style";
+import { TablistButton } from "../students/style";
+import plus from "../../assets/plus-icon.svg";
+import { CreateNewCategory } from "./createNewCategory";
 
 const BudgetComponent = () => {
   const [value, setValue] = React.useState("1");
@@ -25,48 +26,87 @@ const BudgetComponent = () => {
     setValue(newValue);
   };
 
+  const [pages, setPages] = useState("Income");
+
+  const renderContent = () => {
+    if (pages === "Income") {
+      return <BudgetIncome />;
+    } else if (pages === "Category") {
+      return <BudgetCategory />;
+    } else if (pages === "Expense") {
+      return <BedgetExpense />;
+    } else {
+      return null;
+    }
+  };
+
+  const [openSendSmsModal, setOpenSendSmsModal] = React.useState(false);
+
+  const handleCloseSmsModal = (event) => {
+    event.stopPropagation();
+    setOpenSendSmsModal(false);
+  };
+
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <GroupsContainer>
-        <Box sx={{ width: "100%", typography: "body1" }}>
-          <TabContext value={value}>
-            <div>
-              <BudgetTopTextContainer $jus>
-                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                  <TabList
-                    onChange={handleChange}
-                    aria-label="lab API tabs example"
-                  >
-                    <Tab
-                      label="Income"
-                      value="1"
-                      style={{ borderRight: "2px solid #2C2669" }}
-                    />
-                    <Tab
-                      label="Category"
-                      value="2"
-                      style={{ borderRight: "2px solid #2C2669" }}
-                    />
-                    <Tab label="Expense" value="3" />
-                  </TabList>
-                </Box>
-                <BudgetData>
-                  <img src={data} alt="" />
-                  <div>July 23, 2023 - August 23, 2023</div>
-                </BudgetData>
-              </BudgetTopTextContainer>
-            </div>
-            <TabPanel value="1">
-              <BudgetIncome />
-            </TabPanel>
-            <TabPanel value="2">
-              <BudgetCategory />
-            </TabPanel>
-            <TabPanel value="3">
-                <BedgetExpense />
-            </TabPanel>
-          </TabContext>
-        </Box>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+            marginBottom: "40px",
+          }}
+        >
+          <TeacherProfileTabList>
+            <TeacherProfileTabListBtn
+              $first
+              onClick={() => setPages("Income")}
+              selected={pages === "Income"}
+            >
+              Income
+            </TeacherProfileTabListBtn>
+
+            <TeacherProfileTabListBtn
+              onClick={() => setPages("Category")}
+              selected={pages === "Category"}
+            >
+              Category
+            </TeacherProfileTabListBtn>
+
+            <TeacherProfileTabListBtn
+              $second
+              $last
+              onClick={() => setPages("Expense")}
+              selected={pages === "Expense"}
+            >
+              Expense
+            </TeacherProfileTabListBtn>
+          </TeacherProfileTabList>
+
+          {pages === "Income" ? (
+            <BudgetData>
+              <img src={data} alt="" />
+              July 23, 2023 - August 23, 2023
+            </BudgetData>
+          ) : pages === "Category" ? (
+            <TablistButton onClick={() => setOpenSendSmsModal(true)}>
+              <img src={plus} alt="" width={"16px"} />
+              Add new category
+              <CreateNewCategory
+                open={openSendSmsModal}
+                setOpen={handleCloseSmsModal}
+              />
+            </TablistButton>
+          ) : pages === "Expense" ? (
+            <BudgetData>
+              <img src={data} alt="" />
+              July 23, 2023 - August 23, 2023
+            </BudgetData>
+          ) : null}
+        </div>
+
+        {renderContent()}
       </GroupsContainer>
     </div>
   );

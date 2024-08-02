@@ -23,7 +23,7 @@ export const BudgetTopText = styled.p`
 export const BudgetTopTextContainer = styled.div`
     display: flex;
     justify-content: ${(props)=> props.$jus ? "space-between" : ""};
-    margin: ${(props)=> props.$jus ? "" : "6px 0px 30px"};
+    margin-bottom: ${(props)=> props.$jus ? "" : "30px"};
     gap: 20px;
     align-items: center;
 `

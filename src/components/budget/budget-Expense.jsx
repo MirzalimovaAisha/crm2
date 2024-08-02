@@ -6,8 +6,28 @@ import plus from "../../assets/plus-icon.svg";
 import { Table, Tbody, Td, Th, Thead, Tr } from "../groups/style";
 import { budgetExpenseData } from "../mock/budget-expenseData";
 
+import Dropdown from "@mui/joy/Dropdown";
+import IconButton from "@mui/joy/IconButton";
+import Menu from "@mui/joy/Menu";
+import MenuButton from "@mui/joy/MenuButton";
+import MenuItem from "@mui/joy/MenuItem";
+import MoreVert from "@mui/icons-material/MoreVert";
+
+import menu from "../../assets/More.svg";
+import { TablistButton } from "../students/style";
+import { CreateNewCategory } from "./createNewCategory";
+import { CreateNewExpense } from "./CreateNewExpenseModal";
+
 const BedgetExpense = () => {
-  const data = budgetExpenseData.maindata
+  const data = budgetExpenseData.maindata;
+
+  const handleCloseSmsModal = (event) => {
+    event.stopPropagation();
+    setOpenSendSmsModal(false);
+  };
+
+  const [openSendSmsModal, setOpenSendSmsModal] = React.useState(false);
+
   return (
     <div>
       <BudgetTopTextContainer
@@ -38,39 +58,169 @@ const BedgetExpense = () => {
           </BudgetTopText>
           <BudgetTopText>900.000 UZS</BudgetTopText>
         </div>
-        <AddTeacherButton>
+        <AddTeacherButton onClick={() => setOpenSendSmsModal(true)}>
           <img src={plus} alt="" width={"16px"} />
           Create new expense
+          <CreateNewExpense
+            open={openSendSmsModal}
+            setOpen={handleCloseSmsModal}
+          />
         </AddTeacherButton>
       </BudgetTopTextContainer>
 
       <Table>
         <Thead>
-            <Tr $header $hoverNone>
-                <Th $center style={{width:"135px"}}>Date</Th>
-                <Th  style={{width:"169px"}}>Amount</Th>
-                <Th  style={{width:"169px"}}>Category</Th>
-                <Th  style={{width:"218px", padding:"0px 44px"}}>Description</Th>
-                <Th  style={{width:"169px"}}>Payee</Th>
-                <Th  style={{width:"167px"}}>Payment method</Th>
-                <Th style={{width:"57px"}}></Th>
-            </Tr>
+          <Tr $header $hoverNone>
+            <Th $center style={{ width: "135px" }}>
+              Date
+            </Th>
+            <Th style={{ width: "169px" }}>Amount</Th>
+            <Th style={{ width: "169px" }}>Category</Th>
+            <Th style={{ width: "218px", padding: "0px 44px" }}>Description</Th>
+            <Th style={{ width: "169px" }}>Payee</Th>
+            <Th style={{ width: "167px" }}>Payment method</Th>
+            <Th style={{ width: "57px" }}></Th>
+          </Tr>
         </Thead>
         <Tbody>
-        {data.map((value)=> {
-          return(
+          {data.map((value) => {
+            return (
               <Tr>
-                <Td $center style={{width:"135px"}}>{value.expense.data}</Td>
-                <Td $bold $purple style={{width:"169px", gap:"3px"}}>{value.expense.amount}
-                  <div style={{color:"#6053B9", fontSize:"12px", fontWeight:"400"}}>UZS</div>
+                <Td $center style={{ width: "135px" }}>
+                  {value.expense.data}
                 </Td>
-                <Td style={{width:"169px"}}>{value.expense.category}</Td>
-                <Td style={{width:"218px", padding:"0px 20px 0px 44px", lineHeight:"16px"}}>{value.expense.description}</Td>
+                <Td $bold $purple style={{ width: "169px", gap: "3px" }}>
+                  {value.expense.amount}
+                  <div
+                    style={{
+                      color: "#6053B9",
+                      fontSize: "12px",
+                      fontWeight: "400",
+                    }}
+                  >
+                    UZS
+                  </div>
+                </Td>
+                <Td style={{ width: "169px" }}>{value.expense.category}</Td>
+                <Td
+                  style={{
+                    width: "218px",
+                    padding: "0px 20px 0px 44px",
+                    lineHeight: "16px",
+                  }}
+                >
+                  {value.expense.description}
+                </Td>
+                <Td style={{ width: "169px" }}>{value.expense.payee}</Td>
+                <Td style={{ width: "167px" }} $bold $purple>
+                  {value.expense.payment}
+                </Td>
+                <Td $paddingNone style={{ width: "57px" }}>
+                  <Dropdown>
+                    <MenuButton
+                      slots={{ root: IconButton }}
+                      slotProps={{
+                        root: { variant: "outlined", color: "#BFBAE3" },
+                      }}
+                    >
+                      {/* <MoreVert /> */}
+                      <img src={menu} alt="menu" />
+                    </MenuButton>
+                    <Menu
+                      sx={{
+                        border: "none",
+                        boxShadow: "0px 0px 10px 2px rgba(66, 84, 102, 0.20)",
+                        borderRadius: "16px",
+                      }}
+                    >
+                      <MenuItem
+                        sx={{
+                          color: "#6053B9",
+                          fontSize: "14px",
+                          fontWeight: "500",
+                          fontFamily: "Public Sans",
+                        }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="16"
+                          viewBox="0 0 18 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M2.30465 14.4037L2.44648 14.4525L2.30465 14.4037L2.30081 14.4149C2.27108 14.5009 2.2407 14.5854 2.20981 14.6679C2.16119 14.7979 2.11134 14.9231 2.06085 15.0424C1.94028 15.3272 2.1702 15.6635 2.49595 15.6102C2.63781 15.587 2.77609 15.563 2.91084 15.5383C3.00691 15.5207 3.10119 15.5028 3.19368 15.4845L3.21406 15.4805C4.9997 15.1266 6.11794 14.6615 6.66933 14.3878C7.408 14.5808 8.19037 14.6844 9 14.6844C13.4817 14.6844 17.15 11.5014 17.15 7.53442C17.15 3.5674 13.4817 0.384424 9 0.384424C4.51832 0.384424 0.85 3.5674 0.85 7.53442C0.85 9.31501 1.59163 10.9411 2.81348 12.1897C2.73584 12.9267 2.54197 13.7143 2.30465 14.4037ZM4.11455 12.2441C4.14721 11.903 4.02606 11.5651 3.7841 11.3225C2.74848 10.2839 2.15 8.95864 2.15 7.53442C2.15 4.4422 5.06871 1.68442 9 1.68442C12.9313 1.68442 15.85 4.4422 15.85 7.53442C15.85 10.6266 12.9313 13.3844 9 13.3844C8.28389 13.3844 7.59585 13.2905 6.95067 13.1175C6.67696 13.0442 6.38579 13.0744 6.13301 13.2025C5.77951 13.3816 5.01699 13.7186 3.78047 14.0236C3.93715 13.4453 4.05797 12.8351 4.11455 12.2441Z"
+                            fill="#2C2669"
+                          />
+                          <path
+                            d="M2.30465 14.4037L2.44648 14.4525L2.30465 14.4037L2.30081 14.4149C2.27108 14.5009 2.2407 14.5854 2.20981 14.6679C2.16119 14.7979 2.11134 14.9231 2.06085 15.0424C1.94028 15.3272 2.1702 15.6635 2.49595 15.6102C2.63781 15.587 2.77609 15.563 2.91084 15.5383C3.00691 15.5207 3.10119 15.5028 3.19368 15.4845L3.21406 15.4805C4.9997 15.1266 6.11794 14.6615 6.66933 14.3878C7.408 14.5808 8.19037 14.6844 9 14.6844C13.4817 14.6844 17.15 11.5014 17.15 7.53442C17.15 3.5674 13.4817 0.384424 9 0.384424C4.51832 0.384424 0.85 3.5674 0.85 7.53442C0.85 9.31501 1.59163 10.9411 2.81348 12.1897C2.73584 12.9267 2.54197 13.7143 2.30465 14.4037ZM4.11455 12.2441C4.14721 11.903 4.02606 11.5651 3.7841 11.3225C2.74848 10.2839 2.15 8.95864 2.15 7.53442C2.15 4.4422 5.06871 1.68442 9 1.68442C12.9313 1.68442 15.85 4.4422 15.85 7.53442C15.85 10.6266 12.9313 13.3844 9 13.3844C8.28389 13.3844 7.59585 13.2905 6.95067 13.1175C6.67696 13.0442 6.38579 13.0744 6.13301 13.2025C5.77951 13.3816 5.01699 13.7186 3.78047 14.0236C3.93715 13.4453 4.05797 12.8351 4.11455 12.2441Z"
+                            fill="black"
+                            fill-opacity="0.2"
+                          />
+                          <path
+                            d="M2.30465 14.4037L2.44648 14.4525L2.30465 14.4037L2.30081 14.4149C2.27108 14.5009 2.2407 14.5854 2.20981 14.6679C2.16119 14.7979 2.11134 14.9231 2.06085 15.0424C1.94028 15.3272 2.1702 15.6635 2.49595 15.6102C2.63781 15.587 2.77609 15.563 2.91084 15.5383C3.00691 15.5207 3.10119 15.5028 3.19368 15.4845L3.21406 15.4805C4.9997 15.1266 6.11794 14.6615 6.66933 14.3878C7.408 14.5808 8.19037 14.6844 9 14.6844C13.4817 14.6844 17.15 11.5014 17.15 7.53442C17.15 3.5674 13.4817 0.384424 9 0.384424C4.51832 0.384424 0.85 3.5674 0.85 7.53442C0.85 9.31501 1.59163 10.9411 2.81348 12.1897C2.73584 12.9267 2.54197 13.7143 2.30465 14.4037ZM4.11455 12.2441C4.14721 11.903 4.02606 11.5651 3.7841 11.3225C2.74848 10.2839 2.15 8.95864 2.15 7.53442C2.15 4.4422 5.06871 1.68442 9 1.68442C12.9313 1.68442 15.85 4.4422 15.85 7.53442C15.85 10.6266 12.9313 13.3844 9 13.3844C8.28389 13.3844 7.59585 13.2905 6.95067 13.1175C6.67696 13.0442 6.38579 13.0744 6.13301 13.2025C5.77951 13.3816 5.01699 13.7186 3.78047 14.0236C3.93715 13.4453 4.05797 12.8351 4.11455 12.2441Z"
+                            stroke="#2C2669"
+                            stroke-width="0.3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M2.30465 14.4037L2.44648 14.4525L2.30465 14.4037L2.30081 14.4149C2.27108 14.5009 2.2407 14.5854 2.20981 14.6679C2.16119 14.7979 2.11134 14.9231 2.06085 15.0424C1.94028 15.3272 2.1702 15.6635 2.49595 15.6102C2.63781 15.587 2.77609 15.563 2.91084 15.5383C3.00691 15.5207 3.10119 15.5028 3.19368 15.4845L3.21406 15.4805C4.9997 15.1266 6.11794 14.6615 6.66933 14.3878C7.408 14.5808 8.19037 14.6844 9 14.6844C13.4817 14.6844 17.15 11.5014 17.15 7.53442C17.15 3.5674 13.4817 0.384424 9 0.384424C4.51832 0.384424 0.85 3.5674 0.85 7.53442C0.85 9.31501 1.59163 10.9411 2.81348 12.1897C2.73584 12.9267 2.54197 13.7143 2.30465 14.4037ZM4.11455 12.2441C4.14721 11.903 4.02606 11.5651 3.7841 11.3225C2.74848 10.2839 2.15 8.95864 2.15 7.53442C2.15 4.4422 5.06871 1.68442 9 1.68442C12.9313 1.68442 15.85 4.4422 15.85 7.53442C15.85 10.6266 12.9313 13.3844 9 13.3844C8.28389 13.3844 7.59585 13.2905 6.95067 13.1175C6.67696 13.0442 6.38579 13.0744 6.13301 13.2025C5.77951 13.3816 5.01699 13.7186 3.78047 14.0236C3.93715 13.4453 4.05797 12.8351 4.11455 12.2441Z"
+                            stroke="black"
+                            stroke-opacity="0.2"
+                            stroke-width="0.3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                        SMS
+                      </MenuItem>
+                      <MenuItem
+                        sx={{
+                          color: "#6053B9",
+                          fontSize: "14px",
+                          fontWeight: "500",
+                          fontFamily: "Public Sans",
+                        }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M8.00214 12.65C8.30325 12.65 8.57114 12.4112 8.57114 12.1029V8.56175H12.0853C12.3882 8.56175 12.65 8.30867 12.65 8.00209C12.65 7.69035 12.3872 7.44243 12.0853 7.44243H8.57114V3.89712C8.57114 3.58881 8.30325 3.35 8.00214 3.35C7.69573 3.35 7.43314 3.58977 7.43314 3.89712V7.44243H3.919C3.61904 7.44243 3.35 7.6884 3.35 8.00209C3.35 8.31063 3.61804 8.56175 3.919 8.56175H7.43314V12.1029C7.43314 12.4102 7.69573 12.65 8.00214 12.65Z"
+                            fill="#2C2669"
+                          />
+                          <path
+                            d="M8.00214 12.65C8.30325 12.65 8.57114 12.4112 8.57114 12.1029V8.56175H12.0853C12.3882 8.56175 12.65 8.30867 12.65 8.00209C12.65 7.69035 12.3872 7.44243 12.0853 7.44243H8.57114V3.89712C8.57114 3.58881 8.30325 3.35 8.00214 3.35C7.69573 3.35 7.43314 3.58977 7.43314 3.89712V7.44243H3.919C3.61904 7.44243 3.35 7.6884 3.35 8.00209C3.35 8.31063 3.61804 8.56175 3.919 8.56175H7.43314V12.1029C7.43314 12.4102 7.69573 12.65 8.00214 12.65Z"
+                            fill="black"
+                            fill-opacity="0.2"
+                          />
+                          <path
+                            d="M8.00214 12.65C8.30325 12.65 8.57114 12.4112 8.57114 12.1029V8.56175H12.0853C12.3882 8.56175 12.65 8.30867 12.65 8.00209C12.65 7.69035 12.3872 7.44243 12.0853 7.44243H8.57114V3.89712C8.57114 3.58881 8.30325 3.35 8.00214 3.35C7.69573 3.35 7.43314 3.58977 7.43314 3.89712V7.44243H3.919C3.61904 7.44243 3.35 7.6884 3.35 8.00209C3.35 8.31063 3.61804 8.56175 3.919 8.56175H7.43314V12.1029C7.43314 12.4102 7.69573 12.65 8.00214 12.65Z"
+                            stroke="#2C2669"
+                            stroke-width="0.3"
+                          />
+                          <path
+                            d="M8.00214 12.65C8.30325 12.65 8.57114 12.4112 8.57114 12.1029V8.56175H12.0853C12.3882 8.56175 12.65 8.30867 12.65 8.00209C12.65 7.69035 12.3872 7.44243 12.0853 7.44243H8.57114V3.89712C8.57114 3.58881 8.30325 3.35 8.00214 3.35C7.69573 3.35 7.43314 3.58977 7.43314 3.89712V7.44243H3.919C3.61904 7.44243 3.35 7.6884 3.35 8.00209C3.35 8.31063 3.61804 8.56175 3.919 8.56175H7.43314V12.1029C7.43314 12.4102 7.69573 12.65 8.00214 12.65Z"
+                            stroke="black"
+                            stroke-opacity="0.2"
+                            stroke-width="0.3"
+                          />
+                        </svg>
+                        Add payment
+                      </MenuItem>
+                    </Menu>
+                  </Dropdown>
+                </Td>
               </Tr>
-          )
-        })}
+            );
+          })}
         </Tbody>
-        </Table>
+      </Table>
     </div>
   );
 };

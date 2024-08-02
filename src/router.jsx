@@ -15,6 +15,7 @@ import Students from './components/students/students'
 import StudentInfo from './components/students/studentInfo'
 import GroupInfoComponent from './components/groups/groupInfo'
 import BudgetComponent from './components/budget/budget'
+import NotificationComponent from './components/notifications/notification'
 
 function RouterComponent() {
   const location = useLocation()
@@ -43,6 +44,8 @@ function RouterComponent() {
             <Route path='/student/:id' element={<StudentInfo/>}/>
 
             <Route path='/budget' element={<BudgetComponent />} />
+
+            <Route path='/notifications' element={<NotificationComponent />} />
         </Routes>
     </div>
   )
